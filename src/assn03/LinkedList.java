@@ -20,6 +20,24 @@ public class LinkedList<T> {
      * @param i    - index of node to remove
      */
     public void removeAtIndex(int i) {
+
+
+
+        if (i >= _size){
+            throw new IndexOutOfBoundsException();
+        }
+
+        int currentIndex = 0;
+        Node<T> currentNode = _head;
+
+        while (currentIndex < i){
+            currentNode = currentNode.getNext();
+            currentIndex++;
+        }
+
+        currentNode.setNext(currentNode.getNext().getNext());
+        _size--;
+
     }
 
     /**
@@ -39,7 +57,30 @@ public class LinkedList<T> {
      * @return true if the lists have the same elements in the same order, false otherwise
      */
     public boolean isEqual(LinkedList list2) {
-        return false;
+        if (size() != list2.size()){
+            return false;
+        }
+
+        Node currentNode1 = _head;
+        Node currentNode2 = list2._head;
+
+        // Traverse both lists
+        while (currentNode1 != null && currentNode2 != null){
+
+            // Return false if values are not equal
+            if (currentNode1.getValue() != currentNode2.getValue()){
+                return false;
+            }
+
+            // Set the respective nodes to be the next node.
+            // If the next node is null, each will be set to null and the loop will end.
+            currentNode1 = currentNode1.getNext();
+            currentNode2 = currentNode2.getNext();
+        }
+
+        // If both are null, then that basically means we've traversed the lists with no problems.
+        return currentNode1 == null && currentNode2 == null;
+
     }
 
     /**
@@ -50,6 +91,46 @@ public class LinkedList<T> {
      *
      */
     public void removeRepeats() {
+
+        if (_size < 2) return;
+
+        Node<T> currentNode = _head;
+        Node<T> nextUniqueNode;
+
+        while (currentNode.hasNext()){
+
+            // Obtain the next unique node, ignoring all duplicates
+            nextUniqueNode = getNextUnique(currentNode);
+
+            // Set the currentNode's next node to that unique node
+            currentNode.setNext(nextUniqueNode);
+
+            // Set currentNode to the next unique, so we can repeat
+            // UNLESS unique node is null.
+            if (nextUniqueNode != null){
+                currentNode = nextUniqueNode;
+            }
+        }
+    }
+
+    public Node<T> getNextUnique(Node<T> startNode){
+
+        Node<T> pointerNode = startNode;
+
+        if (!pointerNode.hasNext()){
+            return null;
+        }
+
+        while (pointerNode.getValue() == startNode.getValue()){
+            if (pointerNode.hasNext()){
+                pointerNode = pointerNode.getNext();
+            } else {
+                pointerNode = null;
+                break;
+            }
+        }
+
+        return pointerNode;
     }
 
      /**
@@ -59,7 +140,42 @@ public class LinkedList<T> {
      * list after reverse: 9 -> 10 -> 8 -> 7
      */
     public void reverse(int n) {
+
+        /*
+        Fundamentally, this task is exactly the same as reversing a regular linked list (classic LeetCode problem)
+        The only difference is that we reverse the first n elements, and then store a pointer to the next node.
+         */
+
+        // 10 -> 9 -> 8 -> 7, n = 3
+        // 10 <- 9 <- 8
+        // 8 -> 9 -> 10 -> 7
+
+        // list:      10 -> 9 -> 8
+        // reversed:   8 -> 9 -> 10
+        // reversed:  10 <- 9 <- 8 ...
+
+        // currentNode is 10
+
+
+        // First, we iterate until currentNode.next is null, or when we reach i = n
+        int index = 0;
+        Node<T> currentNode = _head;
+
+        // Continue until index is less than n OR until we reach the end of the list.
+        while ((index < n) && (currentNode.hasNext())){
+
+            Node<T> nextNode = currentNode.getNext();
+
+
+
+            index ++;
+        }
+
+
+
     }
+
+
 
     /**
      * Task5

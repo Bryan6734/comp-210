@@ -7,7 +7,8 @@ package assn03;
 public class Main {
 
     public static void main(String[] args) {
-        LinkedList list = new LinkedList<Integer>();
+
+        LinkedList<Integer> list = new LinkedList<Integer>();
         list.add(10);
         list.add(20);
         list.add(60);
@@ -26,14 +27,14 @@ public class Main {
         System.out.println("list after removing 20 = " + list.toString());
 
         System.out.println("index of '30' = " + list.indexOf(30));
-        
+
 
         // Test task 1
         list.removeAtIndex(1);  // TBD
         System.out.println("Task 1: list after removing element at index 1 = " + list.toString());
 
         // Test task 2
-        LinkedList list2 = new LinkedList();
+        LinkedList<Integer> list2 = new LinkedList<>();
         list2.add(10);
         list2.add(10);
         System.out.println("list2 = " + list2.toString());
