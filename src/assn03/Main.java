@@ -50,24 +50,31 @@ public class Main {
 
     // Test task 4
     LinkedList<Integer> list1 = new LinkedList<>();
-    LinkedList<Integer> list2 = new LinkedList<>();
 
     list1.add(10);
     list1.add(20);
     list1.add(30);
     list1.add(40);
-
-    list2.add(50);
-    list2.add(60);
-    list2.add(70);
-
-
+    list1.removeAtIndex(-1);
     System.out.println("list1 = " + list1.toString());
-    System.out.println("list2 = " + list2.toString());
+    // LinkedList<Integer> list2 = new LinkedList<>();
 
-    list1.merge(list2);
+    // list1.add(10);
+    // list1.add(20);
+    // list1.add(30);
+    // list1.add(40);
 
-    System.out.println("merged = " + list1.toString());
+    // list2.add(50);
+    // list2.add(60);
+    // list2.add(70);
+
+
+    // System.out.println("list1 = " + list1.toString());
+    // System.out.println("list2 = " + list2.toString());
+
+    // list1.merge(list2);
+
+    // System.out.println("merged = " + list1.toString());
 
     // Test task 5
   }

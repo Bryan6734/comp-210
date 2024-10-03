@@ -26,6 +26,14 @@ public class LinkedList<T> {
       throw new IndexOutOfBoundsException();
     }
 
+    if (i < 0) {
+      throw new IndexOutOfBoundsException();
+    }
+
+    if (_size == 0) {
+      return;
+    }
+
     int currentIndex = 0;
     Node<T> currentNode = _head;
 
@@ -34,7 +42,32 @@ public class LinkedList<T> {
       currentIndex++;
     }
 
-    currentNode.setNext(currentNode.getNext().getNext());
+    // If the index is 0, then we just set the head to the next node.
+    if (i == 0) {
+      _head = currentNode.getNext();
+      _size--;
+      return;
+    }
+
+    // If the index is the last element, then we set the tail to the previous node.
+    if (i == _size - 1) {
+      Node<T> previousNode = _head;
+      while (previousNode.getNext() != currentNode) {
+        previousNode = previousNode.getNext();
+      }
+      previousNode.setNext(null);
+      _tail = previousNode;
+      _size--;
+      return;
+    }
+
+    // If the index is in the middle, then we set the previous node's next to the
+    // next node.
+    Node<T> previousNode = _head;
+    while (previousNode.getNext() != currentNode) {
+      previousNode = previousNode.getNext();
+    }
+    previousNode.setNext(currentNode.getNext());
     _size--;
 
   }
@@ -148,6 +181,10 @@ public class LinkedList<T> {
       return;
     }
 
+    if (_size < 2) {
+      return;
+    }
+
     /*
      * Fundamentally, this task is exactly the same as reversing a regular linked
      * list (classic LeetCode problem)
@@ -173,15 +210,15 @@ public class LinkedList<T> {
       currentNode = nextNode; // currentNode = 9
 
       // After the first iteration, we have:
-      // null <- 10  | 9 -> 8 -> 7
+      // null <- 10 | 9 -> 8 -> 7
       // previousNode = 10, currentNode = 9, nextNode = 8
 
       // After the second iteration, we have:
-      // null <- 10 <- 9  | 8 -> 7
+      // null <- 10 <- 9 | 8 -> 7
       // previousNode = 9, currentNode = 8, nextNode = 7
 
       // After the third iteration, we have:
-      // null <- 10 <- 9 <- 8  | 7
+      // null <- 10 <- 9 <- 8 | 7
       // previousNode = 8, currentNode = 7, nextNode = null
 
       index++;
@@ -213,23 +250,22 @@ public class LinkedList<T> {
    * @param list2
    */
   public void merge(LinkedList list2) {
-      
-      Node<T> currentNode1 = _head;
-      Node<T> currentNode2 = list2._head;
-  
-      while (currentNode1 != null && currentNode2 != null) {
 
-        Node<T> nextNode1 = currentNode1.getNext();
-        Node<T> nextNode2 = currentNode2.getNext();
+    Node<T> currentNode1 = _head;
+    Node<T> currentNode2 = list2._head;
 
-        currentNode1.setNext(currentNode2);
-        currentNode2.setNext(nextNode1);
+    while (currentNode1 != null && currentNode2 != null) {
 
-        currentNode1 = nextNode1;
-        currentNode2 = nextNode2;
-      }
-      
-      
+      Node<T> nextNode1 = currentNode1.getNext();
+      Node<T> nextNode2 = currentNode2.getNext();
+
+      currentNode1.setNext(currentNode2);
+      currentNode2.setNext(nextNode1);
+
+      currentNode1 = nextNode1;
+      currentNode2 = nextNode2;
+    }
+
   }
 
   /* Implementations below are being given to you. Do not modify below this. */
