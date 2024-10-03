@@ -95,8 +95,8 @@ public class LinkedList<T> {
       return false;
     }
 
-    Node currentNode1 = _head;
-    Node currentNode2 = list2._head;
+    Node<T> currentNode1 = _head;
+    Node<T> currentNode2 = list2._head;
 
     // Traverse both lists
     while (currentNode1 != null && currentNode2 != null) {
@@ -189,7 +189,7 @@ public class LinkedList<T> {
      * Fundamentally, this task is exactly the same as reversing a regular linked
      * list (classic LeetCode problem)
      * The only difference is that we reverse the first n elements, and then store a
-     * pointer to the next node.
+     * pointer to the head of our original linked list (reversedTailNode). This initially points .next to null, but we'll point it to the unreversed part of the LinkedList.
      */
 
     // First, we iterate until currentNode.next is null, or when we reach i == n
