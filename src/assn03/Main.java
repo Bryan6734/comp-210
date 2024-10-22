@@ -8,6 +8,10 @@ public class Main {
 
   public static void main(String[] args) {
 
+    long[] a = new long[10];
+    System.out.println(a[9]);
+
+
     
 
   }
