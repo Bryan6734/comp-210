@@ -8,4 +8,6 @@ public interface Prioritized<V,P extends Comparable<P>> {
      * returns int 0 if priorities are equal, or <0 if (this.getPriority < other.getPriority), or >0 otherwise.
      */
     int compareTo(Prioritized<V, P> other);
+
+    void setPriority(P priority);
 }

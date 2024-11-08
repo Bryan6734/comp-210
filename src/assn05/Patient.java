@@ -5,10 +5,10 @@ import java.util.Random;
 /**
  * class Patient implements the Prioritized interface
  * @param <V> generic data type for the value
- * @param <Integer> Integer to be assigned for the priority
+ * @param <P> P to be assigned for the priority
  */
-public class Patient<V, Integer extends Comparable<Integer>> implements Prioritized<V, Integer> {
-    private Integer _priority;
+public class Patient<V, P extends Comparable<P>> implements Prioritized<V, P> {
+    private P _priority;
     private V _value;
 
     /**
@@ -16,7 +16,7 @@ public class Patient<V, Integer extends Comparable<Integer>> implements Prioriti
      * @param value the value to be set
      * @param priority priority to be set
      */
-    public Patient(V value, Integer priority) {
+    public Patient(V value, P priority) {
         this._value = value;
         this._priority = priority;
     }
@@ -38,25 +38,30 @@ public class Patient<V, Integer extends Comparable<Integer>> implements Prioriti
         return _value;
     }
 
+    @Override
+    public void setPriority(P priority) {
+        this._priority = priority;
+    }
+
     /**
      * @return returns _priority field.
      */
     @Override
-    public Integer getPriority() { return _priority; }
+    public P getPriority() { return _priority; }
 
     /**
      * This helper method sets _priority field to an integer between 0 and 999,999 (i.e. 1000,000-1).
      */
     private void calculatePriority() {
         Random random = new Random();
-        this._priority = (Integer) new java.lang.Integer(random.nextInt(1000000));
+        this._priority = (P) Integer.valueOf(random.nextInt(1000000));
     }
 
     /**
      * @param other The 'other' item to be compared with
      * @return int 0 if priorities are equal, or <0 if (this.getPriority < other.getPriority), or >0 otherwise.
      */
-    public int compareTo(Prioritized<V, Integer> other) {
+    public int compareTo(Prioritized<V, P> other) {
     	return this._priority.compareTo(other.getPriority());
     }
 }
