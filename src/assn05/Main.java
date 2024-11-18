@@ -9,9 +9,9 @@ public class Main {
      */
     public static void main(String[] args) {
         // testT1();
-        // testT2();
+        testT2();
         // testT3();
-        testT4();
+        // testT4();
     }
 
     /**
@@ -23,10 +23,7 @@ public class Main {
         SimpleEmergencyRoom emergencyRoom = new SimpleEmergencyRoom();
 
         emergencyRoom.addPatient(0, 1);
-        emergencyRoom.addPatient(1, 1);
-        emergencyRoom.addPatient(2, 2);
-        emergencyRoom.addPatient(3, 3);
-        emergencyRoom.addPatient(4, 7);
+
 
         Patient patient = emergencyRoom.dequeue();
         System.out.println(patient.getValue());
@@ -41,20 +38,20 @@ public class Main {
 
         MaxBinHeapER<Integer, Integer> emergencyRoom = new MaxBinHeapER<>();
 
-        emergencyRoom.enqueue(0, 52);
-        emergencyRoom.enqueue(1, 70);
-        emergencyRoom.enqueue(2, 45);
-        emergencyRoom.enqueue(3, 9);
-        emergencyRoom.enqueue(4, 15);
-        emergencyRoom.enqueue(5, 39);
-    
+        for (int i = 0; i < 1; i++) {
+            emergencyRoom.enqueue(i, i + 1);
+        }
 
-        System.out.println(emergencyRoom.dequeue());
+        emergencyRoom.enqueue(10);
+
+        emergencyRoom.updatePriority(5, 100);
 
         Prioritized[] arr = emergencyRoom.getAsArray();
         for (int i = 0; i < emergencyRoom.size(); i++) {
             System.out.println("Value: " + arr[i].getValue() + ", Priority: " + arr[i].getPriority());
         }
+
+        System.out.println("Size: " + emergencyRoom.size());
 
     }
 

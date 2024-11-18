@@ -45,7 +45,10 @@ public class MaxBinHeapER<V, P extends Comparable<P>> implements BinaryHeap<V, P
      * @param value
      */
     public void enqueue(V value) {
+
         Patient<V, P> patient = new Patient<>(value);
+        _heap.add(patient);
+
 
     }
 
@@ -112,7 +115,7 @@ public class MaxBinHeapER<V, P extends Comparable<P>> implements BinaryHeap<V, P
                     swap(leftChildIndex(index), index);
                     bubbleDown(leftChildIndex(index));
                 }
-            // if right child is greater than left child
+                // if right child is greater than left child
             } else {
                 if (rightChild.getPriority().compareTo(parent.getPriority()) > 0) {
                     swap(rightChildIndex(index), index);
@@ -178,7 +181,7 @@ public class MaxBinHeapER<V, P extends Comparable<P>> implements BinaryHeap<V, P
      * @param newPriority
      */
     public void updatePriority(V value, P newPriority) {
-        
+
         // search for patient
         for (int i = 0; i < _heap.size(); i++) {
             if (_heap.get(i).getValue().equals(value)) {
@@ -189,7 +192,7 @@ public class MaxBinHeapER<V, P extends Comparable<P>> implements BinaryHeap<V, P
                     bubbleDown(i);
                     break;
                 }
-                
+
                 // update the priority
                 _heap.get(i).setPriority(newPriority);
 
@@ -205,7 +208,7 @@ public class MaxBinHeapER<V, P extends Comparable<P>> implements BinaryHeap<V, P
                 }
 
                 break;
-            } 
+            }
         }
 
     }
@@ -219,7 +222,6 @@ public class MaxBinHeapER<V, P extends Comparable<P>> implements BinaryHeap<V, P
      */
     public MaxBinHeapER(Prioritized<V, P>[] initialEntries) {
 
-
         // build max heap algorithm
         // 1. start from the last non-leaf node
         // 2. bubble down
@@ -232,7 +234,6 @@ public class MaxBinHeapER<V, P extends Comparable<P>> implements BinaryHeap<V, P
         for (int i = parentIndex(_heap.size() - 1); i >= 0; i--) {
             bubbleDown(i);
         }
-
 
     }
 
