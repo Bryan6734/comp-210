@@ -41,6 +41,14 @@ public class NonEmptyBST<T extends Comparable<T>> implements BST<T> {
     }
 
     // TODO: remove
+
+
+    /*
+     * The intuition is that you basically 
+     * 
+     * 
+     * 
+     */
     @Override
     public BST<T> remove(T element) {
 

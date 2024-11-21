@@ -3,8 +3,6 @@ package assn06;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import assn04.EmptyBST;
-
 public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
     // Fields
     private T _value;
@@ -144,6 +142,10 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
     @Override
     public SelfBalancingBST<T> remove(T value) {
 
+        if (isEmpty()) {
+            return this;
+        }
+
         // first, perform binary search to locate the element
         if (value.compareTo(_value) < 0) {
             _left = (AVLTree<T>) _left.remove(value);
@@ -177,7 +179,48 @@ public class AVLTree<T extends Comparable<T>> implements SelfBalancingBST<T> {
                 _right = (AVLTree<T>) _right.remove(min);
 
             }
+        }
 
+        // FROM THIS POINT ON, NODE HAS BEEN REMOVED
+
+
+        _height = 1 + Math.max(_left.height(), _right.height());
+        _size = 1 + _left.size() + _right.size();
+
+        // // get the balanceFactor first
+        int balanceFactor = _left.height() - _right.height();
+
+        System.out.println("VALUE " + _value);
+        System.out.println("BAL FAC " + balanceFactor);
+
+        System.out.println("Left height: " + _left.height());
+        System.out.println("Right height: " + _right.height());
+        System.out.println("-----------------------");
+
+        // Left Heavy (imbalance on left side)
+        if (balanceFactor > 1) {
+            // Left-Left case
+            if (_left._left.height() >= _left._right.height()) {
+                return rotateRight();
+            }
+            // Left-Right case
+            else {
+                _left = (AVLTree<T>) _left.rotateLeft();
+                return rotateRight();
+            }
+        }
+
+        // Right Heavy (imbalance on right side)
+        if (balanceFactor < -1) {
+            // Right-Right case
+            if (_right._right.height() >= _right._left.height()) {
+                return rotateLeft();
+            }
+            // Right-Left case
+            else {
+                _right = (AVLTree<T>) _right.rotateRight();
+                return rotateLeft();
+            }
         }
 
         return this;
