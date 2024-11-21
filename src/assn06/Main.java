@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Create a new empty tree.
-        SelfBalancingBST<Integer> avl_bst = new AVLTree<Integer>();
+        // SelfBalancingBST<Integer> avl_bst = new AVLTree<Integer>();
 
 
         
@@ -18,33 +18,33 @@ public class Main {
         // returned may be different from the original root because of the insertion.
         // resulting height should be about 6.
         
-        for (int n = 1; n < 10; n++) {
+        // for (int n = 1; n < 10; n++) {
 
-            for (int i = 0; i < n; i++) {
-                avl_bst = avl_bst.insert(i);
-            }
-            // System.out.println(avl_bst.height());
-            // System.out.println(avl_bst.size());
-            Queue<SelfBalancingBST<Integer>> queue = new LinkedList<>();
-            queue.add(avl_bst);
+        //     for (int i = 0; i < n; i++) {
+        //         avl_bst = avl_bst.insert(i);
+        //     }
+        //     // System.out.println(avl_bst.height());
+        //     // System.out.println(avl_bst.size());
+        //     Queue<SelfBalancingBST<Integer>> queue = new LinkedList<>();
+        //     queue.add(avl_bst);
 
-            while (!queue.isEmpty()) {
-                SelfBalancingBST<Integer> node = queue.poll();
-                System.out.print(node.getValue() + " ");
+        //     while (!queue.isEmpty()) {
+        //         SelfBalancingBST<Integer> node = queue.poll();
+        //         System.out.print(node.getValue() + " ");
 
-                if (node.getLeft().getValue() != null) {
-                    queue.add(node.getLeft());
-                }
-                if (node.getRight().getValue() != null) {
-                    queue.add(node.getRight());
-                }
-            }
-            System.out.println();
-            System.out.println("-----------");
+        //         if (node.getLeft() != null) {
+        //             queue.add(node.getLeft());
+        //         }
+        //         if (node.getRight() != null) {
+        //             queue.add(node.getRight());
+        //         }
+        //     }
+        //     System.out.println();
+        //     System.out.println("-----------");
 
-        }
+        // }
         
-        System.out.println(avl_bst.findMin());
+        // System.out.println(avl_bst.findMax());
         
         // SelfBalancingBST<Integer> avl_bst2 = new AVLTree<Integer>();
         // // Now insert 50 integers in increasing order which would
@@ -58,16 +58,21 @@ public class Main {
         // System.out.println(avl_bst2.size());
         // // Perform a BFS on avl_bst and print the elements
 
-        // SelfBalancingBST<Integer> avl_bst3 = new AVLTree<Integer>();
-        // avl_bst3 = avl_bst3.insert(10);
-        // avl_bst3 = avl_bst3.insert(12);
-        // avl_bst3 = avl_bst3.insert(4);
-        // avl_bst3 = avl_bst3.insert(3);
-        // avl_bst3 = avl_bst3.insert(5);
-        // avl_bst3 = avl_bst3.insert(8);
-        // avl_bst3 = avl_bst3.insert(7);
+        SelfBalancingBST<Integer> avl_bst3 = new AVLTree<Integer>();
+        avl_bst3 = avl_bst3.insert(10);
+        avl_bst3 = avl_bst3.insert(12);
+        avl_bst3 = avl_bst3.insert(4);
+        avl_bst3 = avl_bst3.insert(3);
+        avl_bst3 = avl_bst3.insert(5);
+        avl_bst3 = avl_bst3.insert(8);
+        avl_bst3 = avl_bst3.insert(7);
         // System.out.println(avl_bst3.height());
         // System.out.println(avl_bst3.size());
+
+        for (int i = -2; i <= 12; i++) {
+            System.out.println("[" + i + "]: " + avl_bst3.contains(i));
+        }
+        // System.out.println(avl_bst3.contains(1));
         // System.out.println(avl_bst3.rangeContain(3,8));     // should print false
         // System.out.println(avl_bst3.rangeContain(3,5));     // should print true
         // System.out.println(avl_bst3.rangeContain(6,8));     // should print false
